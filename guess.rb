@@ -11,9 +11,9 @@ while counter <= chances
 	puts answer
 
 	if answer > secret_number
-		puts "TOO HIGH"
+		puts "TOO HIGH again"
 	elsif answer < secret_number
-		puts "TOO LOW"
+		puts "TOO LOW again"
 	else 
 		break puts "Your number is correct"
 	end
