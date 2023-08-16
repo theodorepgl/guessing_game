@@ -1,5 +1,11 @@
 @scoring_card = {}
 
+def level_stage
+	puts "Choose the level you want to challenge."
+	puts "Easy . Medium . Hard"
+	@level = gets.chomp
+end
+
 def set_default(num)
 	@secret_number = rand(1..num)
 	puts @secret_number
@@ -49,6 +55,7 @@ end
 
 def run_game
 	loop do
+	level_stage
 	set_default(50)
 	get_name
 	guess_game
