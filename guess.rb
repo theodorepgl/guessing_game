@@ -1,28 +1,28 @@
 scoring_card = {}
 
+
+
 loop do
 	puts "Hello, what's your name?"
 	player_name = gets.chomp
 	puts "hi #{player_name}"
 
-	secret_number = rand(1..100)
+	secret_number = rand(1..50)
 	puts secret_number
 
 	counter = 1
 	chances = 6
 	guesses = []
 
-	while tries <= chances 
-		puts 'Choose a number between 1 to 100'
+	while counter <= chances 
+		puts 'Choose a number between 1 to 50'
 		answer = gets.to_i
-		puts "Your guesses: #{answer}"
-		guesses << answer
-		print guesses
+		puts "Your guesses: #{guesses << answer}"
 
 		if answer > secret_number
-			puts "TOO HIGH again"
+			puts "TOO HIGH, please try again"
 		elsif answer < secret_number
-			puts "TOO LOW again"
+			puts "TOO LOW, please try again"
 		else 
 			break puts "Your number is correct"
 		end
