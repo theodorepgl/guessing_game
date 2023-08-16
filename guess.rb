@@ -1,44 +1,61 @@
-scoring_card = {}
+@scoring_card = {}
 
+def set_default(num)
+	@secret_number = rand(1..num)
+	puts @secret_number
+	@counter = 1
+	@chances = 6
+	@guesses = []
+end
 
-
-loop do
+def get_name
 	puts "Hello, what's your name?"
-	player_name = gets.chomp
-	puts "hi #{player_name}"
+	@player_name = gets.chomp
+	puts "hi #{@player_name}"
+end
 
-	secret_number = rand(1..50)
-	puts secret_number
-
-	counter = 1
-	chances = 6
-	guesses = []
-
-	while counter <= chances 
+def guess_game
+	while @counter <= @chances 
 		puts 'Choose a number between 1 to 50'
-		answer = gets.to_i
-		puts "Your guesses: #{guesses << answer}"
+		@answer = gets.to_i
+		puts "Your guesses: #{@guesses << @answer}"
 
-		if answer > secret_number
+		if @answer > @secret_number
 			puts "TOO HIGH, please try again"
-		elsif answer < secret_number
+		elsif @answer < @secret_number
 			puts "TOO LOW, please try again"
 		else 
 			break puts "Your number is correct"
 		end
-		counter += 1
+		@counter += 1
 	end
+end
 
+def leaderboard_up
 	puts "STANDINGS"
-	scoring_card [player_name] = counter
-	scoring_card.sort_by {|player,score| score}.each do |player, score|
+	@scoring_card [@player_name] = @counter
+	@scoring_card.sort_by {|player,score| score}.each do |player, score|
 		puts "#{player}: #{score}"
 	end
+end
 
+def restart_game
 	puts 'Do you want to play again?'
 	puts 'Y - Yes'
 	puts 'N - No'
 
-	play = gets.chomp.downcase
-	break if play != 'y'
+	@play = gets.chomp.downcase
 end
+
+def run_game
+	loop do
+	set_default(50)
+	get_name
+	guess_game
+	leaderboard_up
+	restart_game
+	break if @play != 'y'
+	end
+end
+
+run_game
