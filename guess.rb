@@ -2,27 +2,36 @@
 
 def level_stage
 	puts "Choose the level you want to challenge."
-	puts "Easy . Medium . Hard"
+	puts "(Easy . Medium . Hard)"
 	@level = gets.chomp
+	if @level == @Easy
+		@cap = 20
+	elsif @level == @Medium
+		@cap = 50
+	else
+		@cap = 100
+	end
 end
 
-def set_default(num)
-	@secret_number = rand(1..num)
+def set_default(cap)
+	@secret_number = rand(1..@cap)
 	puts @secret_number
 	@counter = 1
 	@chances = 6
+	@min = 1
+	@max = @cap
 	@guesses = []
 end
 
 def get_name
 	puts "Hello, what's your name?"
-	@player_name = gets.chomp
+	@player_name = gets.chomp.upcase
 	puts "hi #{@player_name}"
 end
 
 def guess_game
 	while @counter <= @chances 
-		puts 'Choose a number between 1 to 50'
+		puts "Choose a number between #{@min}-#{@max}"
 		@answer = gets.to_i
 		puts "Your guesses: #{@guesses << @answer}"
 
